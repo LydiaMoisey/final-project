@@ -24,11 +24,8 @@ public class BreezyLoginTest {
             driver.findElement(By.xpath(BreezyPage.INPUT_EMAIL)).sendKeys("99camomile99@gmail.com");
             driver.findElement(By.xpath(BreezyPage.INPUT_PASSWORD)).sendKeys("Qwerty!1");
             driver.findElement(By.xpath(BreezyPage.BUTTON_LOGIN)).click();
-        try {
-            Thread.sleep(3000);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
+            Driver.waitForPresenceElementByClass(driver,BreezyPage.LABEL_EMAIL_IN_PROFILE,2);
+
             Assertions.assertEquals("99camomile99@gmail.com", driver.findElement(By.className(BreezyPage.LABEL_EMAIL_IN_PROFILE)).getText());
     }
 
@@ -39,11 +36,8 @@ public class BreezyLoginTest {
         driver.findElement(By.xpath(BreezyPage.INPUT_EMAIL)).sendKeys("qwe123@gmail.com");
         driver.findElement(By.xpath(BreezyPage.INPUT_PASSWORD)).sendKeys("Qwerty!1");
         driver.findElement(By.xpath(BreezyPage.BUTTON_LOGIN)).click();
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
+        Driver.waitForElementToBeVisibleByXPath(driver,BreezyPage.ERROR_BLOCK,3);
+
         Assertions.assertEquals("Неправильный логин или пароль", driver.findElement(By.xpath(BreezyPage.ERROR_BLOCK)).getText());
     }
     @Test
@@ -52,11 +46,8 @@ public class BreezyLoginTest {
         driver.findElement(By.className(BreezyPage.ICON_PROFILE)).click();
         driver.findElement(By.xpath(BreezyPage.INPUT_PASSWORD)).sendKeys("Qwerty!1");
         driver.findElement(By.xpath(BreezyPage.BUTTON_LOGIN)).click();
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
+        Driver.waitForElementToBeVisibleByXPath(driver,BreezyPage.ERROR_BLOCK,3);
+
         Assertions.assertEquals("Форма содержит ошибки:\n" +
                 "- Email -- Обязательное поле", driver.findElement(By.xpath(BreezyPage.ERROR_BLOCK)).getText());
     }
@@ -68,18 +59,10 @@ public class BreezyLoginTest {
         driver.findElement(By.xpath(BreezyPage.INPUT_EMAIL)).sendKeys("99camomile99@gmail.com");
         driver.findElement(By.xpath(BreezyPage.INPUT_PASSWORD)).sendKeys("Qwerty!1");
         driver.findElement(By.xpath(BreezyPage.BUTTON_LOGIN)).click();
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
+        Driver.waitForPresenceElementByXPath(driver,BreezyPage.BUTTON_LOGOUT,3);
         driver.findElement(By.xpath(BreezyPage.BUTTON_LOGOUT)).click();
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
         driver.findElement(By.className(BreezyPage.ICON_PROFILE)).click();
+
         Assertions.assertEquals("Вход в личный кабинет", driver.findElement(By.xpath(BreezyPage.LABEL_LOGIN_FORM)).getText());
     }
 

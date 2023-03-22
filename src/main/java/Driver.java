@@ -19,8 +19,12 @@ public class Driver {
         new WebDriverWait(driver, Duration.ofSeconds(seconds))
                 .until(ExpectedConditions.textToBePresentInElement(value, text));
     }
-    public static void waitForElementToBeClickable(WebDriver driver, String className, int seconds) {
+    public static void waitForElementToBeClickableByClass(WebDriver driver, String className, int seconds) {
         new WebDriverWait(driver, Duration.ofSeconds(seconds))
                 .until(ExpectedConditions.elementToBeClickable(By.className(className)));
+    }
+    public static void waitForElementToBeVisibleByXPath(WebDriver driver, String xpath, int seconds) {
+        new WebDriverWait(driver, Duration.ofSeconds(seconds))
+                .until(ExpectedConditions.visibilityOfElementLocated(By.xpath(xpath)));
     }
 }

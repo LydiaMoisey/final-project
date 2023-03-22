@@ -27,6 +27,7 @@ public class BreezyCartTest {
         public void testEmptyCart(){
 
             driver.findElement(By.className(BreezyItemsPage.CART)).click();
+
             Assertions.assertEquals(BreezyItemsPage.emptyCart,
                     driver.findElement(By.xpath(BreezyItemsPage.LABEl_EMPTY_CART)).getText());
 
@@ -36,19 +37,11 @@ public class BreezyCartTest {
 
             driver.findElement(By.xpath(BreezyItemsPage.LINK_ACCESSORS)).click();
             driver.findElement(By.xpath(BreezyItemsPage.LINK_ADAPTORS)).click();
-            try {
-                Thread.sleep(2000);
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
             driver.findElement(By.className(BreezyItemsPage.LINK_TO_PRODUCT)).click();
-            try {
-                Thread.sleep(6000);
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
+            Driver.waitForPresenceElementByClass(driver,BreezyItemsPage.LABEL_PRODUCT_NAME_IN_CARD,5);
             String productName = driver.findElement(By.className(BreezyItemsPage.LABEL_PRODUCT_NAME_IN_CARD)).getText();
             driver.findElement(By.xpath(BreezyItemsPage.BUTTON_BUY)).click();
+
             Assertions.assertTrue(driver.findElement(By.xpath(BreezyItemsPage.LABEL_CART)).isDisplayed());
             Assertions.assertEquals(productName,
                     driver.findElement(By.className(BreezyItemsPage.LABEL_PRODUCT_NAME_IN_CART)).getText());
@@ -59,38 +52,20 @@ public class BreezyCartTest {
 
         driver.findElement(By.xpath(BreezyItemsPage.LINK_ACCESSORS)).click();
         driver.findElement(By.xpath(BreezyItemsPage.LINK_ADAPTORS)).click();
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
         driver.findElement(By.className(BreezyItemsPage.LINK_TO_PRODUCT)).click();
-        try {
-            Thread.sleep(6000);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
+        Driver.waitForPresenceElementByClass(driver,BreezyItemsPage.LABEL_PRODUCT_NAME_IN_CARD,5);
         String firstItem = driver.findElement(By.className(BreezyItemsPage.LABEL_PRODUCT_NAME_IN_CARD)).getText();
         driver.findElement(By.xpath(BreezyItemsPage.BUTTON_BUY)).click();
         driver.findElement(By.className(BreezyItemsPage.BUTTON_CLOSE_CART)).click();
         driver.findElement(By.xpath(BreezyItemsPage.LINK_SCREEN_PROTECTOR)).click();
         driver.findElement(By.xpath(BreezyItemsPage.LINK_SCREEN_PROTECTOR_FOR_WATCH)).click();
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
         driver.findElement(By.className(BreezyItemsPage.LINK_TO_PRODUCT)).click();
-        try {
-            Thread.sleep(10000);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
-
+        Driver.waitForPresenceElementByClass(driver,BreezyItemsPage.LABEL_PRODUCT_NAME_IN_CARD,5);
         String secondItem = driver.findElement(By.className(BreezyItemsPage.LABEL_PRODUCT_NAME_IN_CARD)).getText();
         driver.findElement(By.xpath(BreezyItemsPage.BUTTON_BUY)).click();
         List<WebElement> productsInCart = driver.findElements(By.className(BreezyItemsPage.LABEL_PRODUCT_NAME_IN_CART));
         driver.findElement(By.xpath(BreezyItemsPage.LABEL_CART)).isDisplayed();
+
         Assertions.assertEquals(firstItem, productsInCart.get(0).getText());
         Assertions.assertEquals(secondItem, productsInCart.get(1).getText());
 

@@ -65,7 +65,7 @@ public class BreezySearchTest {
     public void testBreezyCleanSearchBar() {
 
         driver.findElement(By.className(BreezySearchPage.SEARCH_BAR)).sendKeys(BreezySearchPage.textForSearchWithResults);
-        Driver.waitForElementToBeClickable(driver, BreezySearchPage.BUTTON_CLEAR_SEARCH, 3);
+        Driver.waitForElementToBeClickableByClass(driver, BreezySearchPage.BUTTON_CLEAR_SEARCH, 3);
         driver.findElement(By.className(BreezySearchPage.BUTTON_CLEAR_SEARCH)).click();
 
         Assertions.assertTrue(driver.findElement(By.className(BreezySearchPage.SEARCH_BAR)).getText().isEmpty());
