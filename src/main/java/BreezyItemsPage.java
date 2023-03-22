@@ -14,6 +14,4 @@ public class BreezyItemsPage {
     public static final String LABEL_CART = "//div[contains(text(),'Корзина')]";
     public static final String LABEL_PRODUCT_NAME_IN_CART = "modal_item_title";
     public static final String BUTTON_CLOSE_CART = "modal_close_icon";
-    public static final String BUTTON_LOGOUT = "//a[@href='https://breezy.by/logout']";
-    public static final String ERROR_BLOCK ="//form[@id='login_form']/div[@class='error_place']";
 }
