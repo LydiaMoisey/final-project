@@ -27,4 +27,9 @@ public class Driver {
         new WebDriverWait(driver, Duration.ofSeconds(seconds))
                 .until(ExpectedConditions.visibilityOfElementLocated(By.xpath(xpath)));
     }
+    public static void waitForElementToBeVisibleByClass(WebDriver driver, String className, int seconds) {
+        new WebDriverWait(driver, Duration.ofSeconds(seconds))
+                .until(ExpectedConditions.visibilityOfElementLocated(By.className(className)));
+    }
+
 }

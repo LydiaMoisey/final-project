@@ -12,6 +12,7 @@ import java.util.List;
 
 public class BreezySearchTest {
     WebDriver driver;
+
     @BeforeEach
     public void warmUp() {
         ChromeOptions options = new ChromeOptions();
@@ -26,11 +27,13 @@ public class BreezySearchTest {
     public void testBreezySearch() {
 
         driver.findElement(By.className(BreezySearchPage.SEARCH_BAR)).sendKeys(BreezySearchPage.textForSearchWithResults);
-        Driver.waitForPresenceElementByClass(driver, BreezySearchPage.BUTTON_SEARCH, 2);
+        Driver.waitForElementToBeVisibleByClass(driver, BreezySearchPage.BUTTON_SEARCH, 3);
         driver.findElement(By.className(BreezySearchPage.BUTTON_SEARCH)).click();
+        Driver.waitForPresenceElementByXPath(driver, BreezySearchPage.CHECKBOX_WIRELESS_CHARGER, 3);
         driver.findElement(By.xpath(BreezySearchPage.CHECKBOX_WIRELESS_CHARGER)).click();
         driver.findElement(By.xpath(BreezySearchPage.CHECKBOX_POWERBANK)).click();
-        Driver.waitForTextPresence(driver,4,driver.findElement(By.className(BreezySearchPage.LABEL_PRODUCT_NAME)), BreezySearchPage.textForSearchWithResults);
+        Driver.waitForTextPresence(driver, 4,
+                driver.findElement(By.className(BreezySearchPage.LABEL_PRODUCT_NAME)), BreezySearchPage.textForSearchWithResults);
 
         List<WebElement> products = driver.findElements(By.className(BreezySearchPage.LABEL_PRODUCT_NAME));
         for (WebElement product : products) {
@@ -38,18 +41,30 @@ public class BreezySearchTest {
             Assertions.assertTrue(product.getText().toLowerCase().contains(BreezySearchPage.textForSearchWithResults),
                     "Error. No " + BreezySearchPage.textForSearchWithResults + " found.");
         }
-        WebElement pagination = driver.findElement(By.xpath(BreezySearchPage.BUTTON_PAGINATION_NEXT));
-        while(pagination.isDisplayed()) {
-            pagination.click();
 
+        WebElement pagination = driver.findElement(By.xpath(BreezySearchPage.BUTTON_PAGINATION_NEXT));
+        while (driver.findElements(By.xpath(BreezySearchPage.BUTTON_PAGINATION_NEXT)).size() > 0) {
+            pagination.click();
+            try {
+                Thread.sleep(2000);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+
+            System.out.println("Next page");
             List<WebElement> productsOnTheNextPage = driver.findElements(By.className(BreezySearchPage.LABEL_PRODUCT_NAME));
+            System.out.println();
+
             for (WebElement product : productsOnTheNextPage) {
+                System.out.println(product.getText());
+
                 Assertions.assertTrue(product.getText().toLowerCase().
                                 contains(BreezySearchPage.textForSearchWithResults.toLowerCase()),
                         "Error. No " + BreezySearchPage.textForSearchWithResults + " found.");
             }
         }
     }
+
     @Test
     public void testBreezySearchWithoutResults() {
 

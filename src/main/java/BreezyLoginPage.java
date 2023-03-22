@@ -1,4 +1,4 @@
-public class BreezyPage {
+public class BreezyLoginPage {
     public static final String URL = "https://breezy.by/";
     public static final String ICON_PROFILE = "header_profile";
     public static final String LABEL_LOGIN_FORM = "//*[@id='login_modal']/div[@class='modal_head']";
