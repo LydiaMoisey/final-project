@@ -53,7 +53,6 @@ public class BreezySearchTest {
 
             System.out.println("Next page");
             List<WebElement> productsOnTheNextPage = driver.findElements(By.className(BreezySearchPage.LABEL_PRODUCT_NAME));
-            System.out.println();
 
             for (WebElement product : productsOnTheNextPage) {
                 System.out.println(product.getText());
