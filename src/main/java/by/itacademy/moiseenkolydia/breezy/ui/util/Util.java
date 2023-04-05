@@ -1,3 +1,5 @@
+package by.itacademy.moiseenkolydia.breezy.ui.util;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -6,7 +8,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
-public class Driver {
+public class Util {
     public static void waitForPresenceElementByXPath(WebDriver driver, String xPath, int seconds) {
         new WebDriverWait(driver, Duration.ofSeconds(seconds))
                 .until(ExpectedConditions.presenceOfElementLocated(By.xpath(xPath)));
@@ -31,5 +33,6 @@ public class Driver {
         new WebDriverWait(driver, Duration.ofSeconds(seconds))
                 .until(ExpectedConditions.visibilityOfElementLocated(By.className(className)));
     }
+
 
 }
