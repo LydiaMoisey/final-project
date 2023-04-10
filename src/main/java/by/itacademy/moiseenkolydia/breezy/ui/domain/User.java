@@ -2,7 +2,7 @@ package by.itacademy.moiseenkolydia.breezy.ui.domain;
 
 import com.github.javafaker.Faker;
 
-public class Domain {
+public class User {
     static Faker faker = new Faker();
     private String email;
     private String password;
@@ -11,7 +11,7 @@ public class Domain {
     public static final String RANDOM_EMAIL = faker.internet().emailAddress();
     public static final String RANDOM_PASSWORD = faker.internet().password(6, 14);
 
-    public Domain(String email, String password) {
+    public User(String email, String password) {
         this.email = email;
         this.password = password;
     }

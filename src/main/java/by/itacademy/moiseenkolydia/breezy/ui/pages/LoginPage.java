@@ -1,28 +1,40 @@
 package by.itacademy.moiseenkolydia.breezy.ui.pages;
 
+import by.itacademy.moiseenkolydia.breezy.ui.util.Util;
 import org.openqa.selenium.By;
 
 public class LoginPage extends BasePage {
     private final By ICON_PROFILE = By.className("header_profile");
-    private final By LABEL_LOGIN_FORM = By.xpath("//*[@id='login_modal']/div[@class='modal_head']");
+    private final static By LABEL_LOGIN_FORM = By.xpath("//*[@id='login_modal']/div[@class='modal_head']");
+
     private final By INPUT_EMAIL = By.xpath("//form[@id='login_form']//input[@name='email']");
     private final By INPUT_PASSWORD = By.xpath("//form[@id='login_form']//input[@type='password']");
     private final By BUTTON_LOGIN = By.xpath("//div[@data-func='login']");
-    private final By LABEL_EMAIL_IN_PROFILE = By.className("email");
+    private final static By LABEL_EMAIL_IN_PROFILE = By.className("email");
     private final By BUTTON_LOGOUT = By.xpath("//a[@href='https://breezy.by/logout']");
-    private final By ERROR_BLOCK = By.xpath("//form[@id='login_form']/div[@class='error_place']");
+    private final static By ERROR_BLOCK = By.xpath("//form[@id='login_form']/div[@class='error_place']");
+    public final static String LABEL_LOGIN = "Вход в личный кабинет";
+    public final static String ERROR_INVALID_EMAIL_AND_PASSWORD = "Неправильный логин или пароль";
+    public final static String ERROR_WITHOUT_EMAIL =
+            String.format("%s\n%s", "Форма содержит ошибки:", "- Email -- Обязательное поле");
+    public final static String ERROR_WITHOUT_PASSWORD =
+            String.format("%s\n%s", "Форма содержит ошибки:", "- Пароль -- Обязательное поле");
 
     public LoginPage openLoginForm() {
         driver.findElement(ICON_PROFILE).click();
         return this;
     }
 
-    public LoginPage inputEmail(String email) {
+    public static String getLoginFormLabel() {
+        return driver.findElement(LABEL_LOGIN_FORM).getText();
+    }
+
+    public LoginPage enterEmail(String email) {
         driver.findElement(INPUT_EMAIL).sendKeys(email);
         return this;
     }
 
-    public LoginPage inputPassword(String password) {
+    public LoginPage enterPassword(String password) {
         driver.findElement(INPUT_PASSWORD).sendKeys(password);
         return this;
     }
@@ -32,18 +44,18 @@ public class LoginPage extends BasePage {
         return this;
     }
 
-    public LoginPage getUserEmailInProfile() {
-        driver.findElement(LABEL_EMAIL_IN_PROFILE).getText();
-        return this;
+    public static String getUserEmailInProfile() {
+        Util.waitForPresenceOfElement(driver, 3, LABEL_EMAIL_IN_PROFILE);
+        return driver.findElement(LABEL_EMAIL_IN_PROFILE).getText();
     }
 
-    public LoginPage clickLogout() {
+    public void clickLogout() {
+        Util.waitForPresenceOfElement(driver, 3, BUTTON_LOGOUT);
         driver.findElement(BUTTON_LOGOUT).click();
-        return this;
     }
 
-    public LoginPage getErrorAuthorization() {
-        driver.findElement(ERROR_BLOCK).getText();
-        return this;
+    public static String getErrorAuthorization() {
+        Util.waitForElementToBeVisible(driver, 3, ERROR_BLOCK);
+        return driver.findElement(ERROR_BLOCK).getText();
     }
 }
