@@ -55,7 +55,7 @@ public class CartPage extends BasePage {
     }
 
     public int getProductPrice() {
-        Util.waitForElementToBeVisible(driver, 5, PRODUCT_PRISE);
+        Util.waitForElementToBeVisible(driver, 15, PRODUCT_PRISE);
         String[] productPrice = driver.findElement(PRODUCT_PRISE).getText().split(" ");
         return Integer.parseInt(productPrice[0]);
     }
