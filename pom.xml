@@ -60,17 +60,9 @@
             <artifactId>maven-surefire-plugin</artifactId>
             <version>2.21.0</version>
             <configuration>
-                <testFailureIgnore>false</testFailureIgnore>
                 <argLine>
                     -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
                 </argLine>
-                <systemPropertyVariables>
-                    <property>
-                       <propertyName>junit.jupiter.extensions.autodetection.enabled</propertyName>
-                        <buildDirectory>${project.build.directory}</buildDirectory>
-                    </property>
-                </systemPropertyVariables>
-                <systemPropertyVariables>target/allure-results</systemPropertyVariables>
             </configuration>
             <dependencies>
                 <dependency>
