@@ -26,7 +26,7 @@ public class LoginPage extends BasePage {
     }
 
     public static String getLoginFormLabel() {
-        Util.waitForPresenceOfElement(driver, 5, LABEL_LOGIN_FORM)
+        Util.waitForPresenceOfElement(driver, 5, LABEL_LOGIN_FORM);
         return driver.findElement(LABEL_LOGIN_FORM).getText();
     }
 
