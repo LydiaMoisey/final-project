@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 
 import static io.restassured.RestAssured.given;
 import static io.restassured.RestAssured.when;
+import static org.hamcrest.Matchers.equalTo;
 
 public class ApiTest {
     JSONObject data = new JSONObject();
@@ -36,6 +37,7 @@ public class ApiTest {
         then().
                 log().body().
                 assertThat().
+                body("data.email", equalTo(TestData.VALID_EMAIL)).
                 statusCode(200);
     }
 
@@ -54,6 +56,7 @@ public class ApiTest {
         then().
                 log().body().
                 assertThat().
+                body("message", equalTo(TestData.ERROR_INVALID_EMAIL_AND_PASSWORD)).
                 statusCode(200);
     }
 
@@ -71,6 +74,7 @@ public class ApiTest {
         then().
                 log().body().
                 assertThat().
+                body("message", equalTo(TestData.ERROR_WITHOUT_EMAIL)).
                 statusCode(200);
     }
 
@@ -89,6 +93,7 @@ public class ApiTest {
         then().
                 log().body().
                 assertThat().
+                body("message", equalTo(TestData.ERROR_INVALID_EMAIL_AND_PASSWORD)).
                 statusCode(200);
     }
 
@@ -107,6 +112,7 @@ public class ApiTest {
         then().
                 log().body().
                 assertThat().
+                body("message", equalTo(TestData.ERROR_WITHOUT_PASSWORD)).
                 statusCode(200);
     }
 
@@ -123,6 +129,7 @@ public class ApiTest {
         then().
                 log().body().
                 assertThat().
+                body("message", equalTo(TestData.ERROR_WITHOUT_EMAIL_AND_PASSWORD)).
                 statusCode(200);
     }
     @Test

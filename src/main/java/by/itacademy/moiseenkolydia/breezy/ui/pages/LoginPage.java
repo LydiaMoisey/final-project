@@ -19,6 +19,8 @@ public class LoginPage extends BasePage {
             String.format("%s\n%s", "Форма содержит ошибки:", "- Email -- Обязательное поле");
     public final static String ERROR_WITHOUT_PASSWORD =
             String.format("%s\n%s", "Форма содержит ошибки:", "- Пароль -- Обязательное поле");
+    public final static String ERROR_WITHOUT_EMAIL_AND_PASSWORD =
+            String.format("%s\n%s\n%s", "Форма содержит ошибки:", "- Email -- Обязательное поле", "- Пароль -- Обязательное поле");
 
     public LoginPage openLoginForm() {
         driver.findElement(ICON_PROFILE).click();

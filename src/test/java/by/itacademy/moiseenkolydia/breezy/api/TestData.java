@@ -12,4 +12,11 @@ public class TestData {
     public static final String RANDOM_EMAIL = faker.internet().emailAddress();
     public static final String RANDOM_PASSWORD = faker.internet().password(6, 14);
     public static final String TEXT_SEARCH = "наушники";
+    public static final String ERROR_INVALID_EMAIL_AND_PASSWORD = "Неправильный логин или пароль";
+    public final static String ERROR_WITHOUT_EMAIL =
+            "Форма содержит ошибки: <p>- Email -- Обязательное поле<br>";
+    public final static String ERROR_WITHOUT_PASSWORD =
+            "Форма содержит ошибки: <p>- Пароль -- Обязательное поле<br>";
+    public final static String ERROR_WITHOUT_EMAIL_AND_PASSWORD =
+            "Форма содержит ошибки: <p>- Email -- Обязательное поле<br>- Пароль -- Обязательное поле<br>";
 }

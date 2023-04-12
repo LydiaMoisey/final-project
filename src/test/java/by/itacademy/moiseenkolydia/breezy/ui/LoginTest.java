@@ -37,12 +37,21 @@ public class LoginTest extends BaseTest {
         steps.login("", User.VALID_PASSWORD);
         Assertions.assertEquals(LoginPage.ERROR_WITHOUT_EMAIL, LoginPage.getErrorAuthorization());
     }
+
     @Test
     @DisplayName("Login without password")
     public void testLoginWithoutPassword() {
         steps.login(User.VALID_EMAIL, "");
         Assertions.assertEquals(LoginPage.ERROR_WITHOUT_PASSWORD, LoginPage.getErrorAuthorization());
     }
+
+    @Test
+    @DisplayName("Login without email and password")
+    public void testLoginWithoutEmailAndPassword() {
+        steps.login("", "");
+        Assertions.assertEquals(LoginPage.ERROR_WITHOUT_EMAIL_AND_PASSWORD, LoginPage.getErrorAuthorization());
+    }
+
     @Test
     @DisplayName("Logout")
     public void testLogout() {
