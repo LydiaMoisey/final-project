@@ -26,6 +26,7 @@ public class LoginPage extends BasePage {
     }
 
     public static String getLoginFormLabel() {
+        Util.waitForPresenceOfElement(driver, 5, LABEL_LOGIN_FORM)
         return driver.findElement(LABEL_LOGIN_FORM).getText();
     }
 
@@ -45,17 +46,17 @@ public class LoginPage extends BasePage {
     }
 
     public static String getUserEmailInProfile() {
-        Util.waitForPresenceOfElement(driver, 3, LABEL_EMAIL_IN_PROFILE);
+        Util.waitForPresenceOfElement(driver, 10, LABEL_EMAIL_IN_PROFILE);
         return driver.findElement(LABEL_EMAIL_IN_PROFILE).getText();
     }
 
     public void clickLogout() {
-        Util.waitForPresenceOfElement(driver, 3, BUTTON_LOGOUT);
+        Util.waitForPresenceOfElement(driver, 10, BUTTON_LOGOUT);
         driver.findElement(BUTTON_LOGOUT).click();
     }
 
     public static String getErrorAuthorization() {
-        Util.waitForElementToBeVisible(driver, 3, ERROR_BLOCK);
+        Util.waitForElementToBeVisible(driver, 10, ERROR_BLOCK);
         return driver.findElement(ERROR_BLOCK).getText();
     }
 }
