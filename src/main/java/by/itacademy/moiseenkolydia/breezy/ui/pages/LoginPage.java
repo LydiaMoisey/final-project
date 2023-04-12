@@ -51,7 +51,7 @@ public class LoginPage extends BasePage {
     }
 
     public void clickLogout() {
-        Util.waitForPresenceOfElement(driver, 10, BUTTON_LOGOUT);
+        Util.waitForElementToBeVisible(driver, 10, BUTTON_LOGOUT);
         driver.findElement(BUTTON_LOGOUT).click();
     }
 
