@@ -21,7 +21,7 @@ public class SearchPage extends BasePage {
     public final static String NO_RESULTS =
             String.format("%s%s%s\n%s", "По вашему запросу ничего не найдено (", PRODUCT_FOR_SEARCH_WITHOUT_RESULTS,
                     ")", "Попробуйте сократить запрос или задать его по-другому. Убедитесь, что название бренда и модели написано правильно.");
-    static List<String> productNameList;
+    List<String> productNameList;
 
     public SearchPage enterProductToSearchBar(String product) {
         driver.findElement(SEARCH_BAR).sendKeys(product);
@@ -54,7 +54,7 @@ public class SearchPage extends BasePage {
         return this;
     }
 
-    public static List<String> getProductNamesOnPage() {
+    public  List<String> getProductNamesOnPage() {
         Util.waitForTextPresence(driver, 2,
                 driver.findElement(LABEL_PRODUCT_NAME), PRODUCT_FOR_SEARCH_WITH_RESULTS);
         productNameList = new ArrayList<>();
@@ -74,7 +74,7 @@ public class SearchPage extends BasePage {
         return productNameList;
     }
 
-    public static boolean isSearchResultListContainsProductName(String productName) {
+    public boolean isSearchResultListContainsProductName(String productName) {
         if (productNameList == null) {
             productNameList = getProductNamesOnPage();
         }
