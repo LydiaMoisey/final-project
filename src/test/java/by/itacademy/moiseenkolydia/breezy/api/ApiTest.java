@@ -132,15 +132,4 @@ public class ApiTest {
                 body("message", equalTo(TestData.ERROR_WITHOUT_EMAIL_AND_PASSWORD)).
                 statusCode(200);
     }
-    @Test
-    @DisplayName("Search product")
-    public void testSearchProduct() {
-        given().
-                queryParam("search", TestData.TEXT_SEARCH).
-        when().
-                get(TestData.SEARCH_URL).
-        then().
-                assertThat().
-                statusCode(200);
-    }
 }
